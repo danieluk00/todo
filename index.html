@@ -1,0 +1,101 @@
+<html lang="en">
+<head name="Todo">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animate.css">
+
+    <title>Todo List</title>
+</head>
+<body onLoad="onLoad()">
+
+<div class="alert alert-warning alert-dismissible fade" role="alert">
+        <strong>Hey there!</strong> We use cookies to save your tasks. Keep using this site if that's cool with you.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+ </div>
+
+
+<div class="activelist container">
+
+    <header class="text-center text-dark my-4">
+        <h1 class="mb-4 font-weight-light text-center">Todo List</h1>
+        <div class="search-filter">
+            <h5 class="my-title mb-2 font-weight-light"></h5>
+            <form class="search" autocomplete="off">
+                <input class="form-control m-auto searchbox rounded-pill" type="text" name="search" placeholder="Filter my todo list..." />
+                <i class="far fa-search-alt"></i>
+            </form>
+        </div>
+    </header>
+
+    <ul class="list-group todo-list mx-auto text-light">
+    </ul>
+
+    <span class="plus-icon container"><h1><i class="fas fa-plus-circle" title="Add task"></i></h1></p>
+    </span>
+
+</div>
+
+<div class="newtask container">
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title font-weight-light">Add a new task...</h5>
+            <form class="add" autocomplete="off">
+                <input class="form-control new-task font-weight-light" type="text" placeholder="What I need to do" name="add">
+
+                <h5 class="card-title font-weight-light">Set a deadline?</h5>
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="date" value=0>
+                           <label class="form-check-label" for="exampleRadios2">Today</label>
+                       </input>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="date" value=1>
+                           <label class="form-check-label" for="exampleRadios2">Tomorrow</label>
+                       </input>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="date" value=3>
+                           <label class="form-check-label" for="exampleRadios2">3 days</label>
+                       </input>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="date" value=7 checked>
+                           <label class="form-check-label" for="exampleRadios2">1 week</label>
+                       </input>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="date" value=0>
+                        <input class="datepicker deadline font-weight-light" type="date" placeholder="Deadline">
+                        </input>
+                    </input>
+                </div>
+                <div class="form-check">
+                     <input class="form-check-input" type="radio" name="date" value=365>
+                        <label class="form-check-label" for="exampleRadios2">No hurry</label>
+                    </input>
+                </div>
+
+                <button type="submit" class="btn btn-dark" disabled="true">Add</button>
+            </form>
+        </div>
+    </div>
+    <span class="list-icon container"><h1><i class="fas fa-chevron-circle-down" title="Add task"></i></h1></p>
+    
+    </div>
+
+
+</div>>
+
+
+<script src="app.js"></script>
+<script src="load.js"></script>
+
+</body>
+</html>
