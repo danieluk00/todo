@@ -31,11 +31,11 @@ body{
   }
 
   .list-group-item{
-    background: #005580;
+    background: #ffd9b3;
   }
 
   .list-group-item:hover{
-    background: #0077b3;
+    background: #ffe6cc;
   }
 
   .filter-out{
@@ -52,7 +52,7 @@ body{
    }
 
    .starred:hover{
-    background: #ffd633 !important;
+    background: #ffe066 !important;
     color: #000 !important;
    }
 
@@ -74,7 +74,7 @@ body{
     margin-left:20px;
   }
 
-  .margin-hidden{
+  .hidden{
     display:none !important;
   }
 
@@ -93,7 +93,7 @@ body{
    }
 
    .highlight-edit{
-    background: #f2e6ff !important;
+    background: #FFB900 !important;
     color: #000000 !important;
    }
 
@@ -122,4 +122,27 @@ body{
 
   .disabled{
     background: #696969;
+  }
+
+  .card{
+    margin-top:20px;
+  }
+
+  .disabled {
+    background:black;
+    opacity: 0.2;
+    }
+
+  .editcard {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-top: 50px;
+    margin-left: -300px;
+    width:600px;
+  }
+
+  .wrapper {
+    height:100%;
+    width:100%;
   }
