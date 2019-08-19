@@ -35,7 +35,6 @@ function loadTasksFromCookie() {
             generateTemplate(taskArray[i], false, false, false, taskArray[i+1]=='true', false);
         }
 
-        newTaskContainer.classList.add('hide');
         updateCaption();
     }
 }
