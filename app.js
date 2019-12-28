@@ -15,6 +15,7 @@ const generateTemplate = (todo, newBadge, riseAnimation, shakeAnimation, starBut
 
     //Specify whether item should be highlighted, starred or have 'Move up' action button
     const starredClass = starButton ? `starred` : "";
+    const starFilled = starButton ? `fas fa-star` : `far fa-star`;
     const highlightClass = highlightCheck ? `highlight` : "";
     const moveUpClass = (list.innerHTML.length>20) ? `<i class="far fa-arrow-alt-circle-up move-up" title="Move higher"></i>` : "";
     const shakeClass = shakeAnimation ? `rubberBand animated` : ""; 
@@ -28,13 +29,15 @@ const generateTemplate = (todo, newBadge, riseAnimation, shakeAnimation, starBut
         riseClass = "";
     }
     
+    console.log(starFilled);
+
     const html = `
         <li class="list-group-item d-flex justify-content-between align-items-center ${starredClass} ${riseClass} ${shakeClass} ${highlightClass}">
-        <i class="icons far fa-star star" title="Mark as important"></i> 
-        <span class="flex-fill font-weight-light">${todo}</span>
-        ${moveUpClass}
-        <i class="far fa-edit edit" title="Edit"></i>
-        <i class="far fa-trash-alt delete" title="Delete"></i>
+            <i class="icons ${starFilled} star" title="Mark as important"></i> 
+            <span class="flex-fill font-weight-light">${todo}</span>
+            ${moveUpClass}
+            <i class="far fa-edit edit" title="Edit"></i>
+            <i class="far fa-trash-alt delete" title="Delete"></i>
         </li>
     `;
 
@@ -59,6 +62,27 @@ addForm.addEventListener('submit', e => {
 function deleteTask(item) {
     item.classList.add('animated', 'bounceOutLeft'); //Animate out
     setTimeout(function() {item.remove(); housekeeping()}, 600); //Then pause and delete element
+}
+
+function starTask(item) {
+    item.classList.toggle("starred");
+
+    item.classList.add("pulse","animated");
+    setTimeout(function(){ item.classList.remove("pulse","animated");; }, 800);
+
+    item.children[0].classList.add("flip","animated");
+    setTimeout(function(){ item.children[0].classList.remove("flip","animated"); }, 800);
+
+    if (item.children[0].classList.contains('fas')) {
+        item.children[0].classList.remove('fas');
+        item.children[0].classList.add('far');
+
+    } else {
+        item.children[0].classList.remove('far');
+        item.children[0].classList.add('fas');
+    }
+
+    updateTaskCookie();
 }
 
 //Reorder list
@@ -98,7 +122,7 @@ list.addEventListener('click', e => {
     let clickedItem = e.target.parentElement; //Parent item of clicked icon
 
     if (e.target.classList.contains('delete')) {deleteTask(clickedItem)} //Delete button
-    else if (e.target.classList.contains('star')) {clickedItem.classList.toggle("starred"); updateTaskCookie()} //Star button
+    else if (e.target.classList.contains('star')) {starTask(clickedItem)} //Star button
     else if (e.target.classList.contains('edit')) {editTask(clickedItem)} //Edit button
     else if (e.target.classList.contains('move-up')) {reorderList(clickedItem)} //Move up button
 })
@@ -144,7 +168,7 @@ function editTask(item) {
         text=editForm.edit.value.trim() //Get text from form
 
         if (text!="") {
-                activeItem.querySelector('span').innerHTML=`${text}`;
+            activeItem.querySelector('span').innerHTML=`${text}`;
         }
         
         animateEditCard("Out"); // Animate save
@@ -158,9 +182,9 @@ function animateEditCard(direction) {
     if (direction=="In") {
 
         editCard.classList.remove('hidden');
-        editCard.classList.add('animated','zoomInDown');
+        editCard.classList.add('animated','rubberBand');
         setTimeout(function() {
-            editCard.classList.remove('animated','ZoomInDown');
+            editCard.classList.remove('animated','rubberBand');
         }, 1000); //Snap, then removes
 
     } else if (direction=="Out") {
@@ -186,6 +210,11 @@ function updateCaption() {
     else if (taskCount==1) {title.textContent=`1 task`}
     else {title.textContent=`${taskCount} tasks`}
 
+    if (prevCaption != title.textContent) {
+        title.classList.add('pulse', 'animated');
+        setTimeout(function() { title.classList.remove('pulse', 'animated'); }, 1000); 
+    }
+
 }
 
 //Listen for search term change
@@ -199,13 +228,13 @@ const filterList = (searchTerm) => {
 
     //Iterate array and add or remove 'filter-out' class
     Array.from(list.children)
-        .filter(todo => !todo.textContent.includes(searchTerm))
+        .filter(todo => !todo.textContent.toLowerCase().includes(searchTerm.toLowerCase()))
         .forEach((todo) => todo.classList.add('filter-out'))
 
     Array.from(list.children)
-    .filter(todo => todo.textContent.includes(searchTerm))
-    .forEach((todo) => todo.classList.remove('filter-out'))
-    
+        .filter(todo => todo.textContent.toLowerCase().includes(searchTerm.toLowerCase()))
+        .forEach((todo) => todo.classList.remove('filter-out'))
+        
     updateCaption()
 }
 

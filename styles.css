@@ -1,8 +1,14 @@
 body{
-    background: #cce6ff;
+    background: #F9F5F4;
   }
+
   .container{
     max-width: 600px;
+  }
+
+  h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 60px;
   }
 
   .disabled{
@@ -14,28 +20,42 @@ body{
     pointer-events:auto;
   }
 
-  .far{
-    padding-left:16px;
+  .far, .fas{
+    padding-left: 16px;
   } 
+
+  @media only screen and (max-width: 400px) {
+    .far, .fas{
+      padding-left: 8px;
+    }
+  }
 
   input[type=text],
   input[type=text]:focus{
     color: rgb(41, 41, 41);
     border: none;
-    background: #D3D3D3;
+    background: #d8d8d8;
     max-width: 600px;
   }
 
-  .todos li{
-    background: #66ccff;
-  }
-
   .list-group-item{
-    background: #ffd9b3;
+    background: #B55361;
   }
 
-  .list-group-item:hover{
-    background: #ffe6cc;
+  .list-group-item i, .flex-fill{
+    color: #F9F5F4;
+  }
+
+  .starred i, .starred .flex-fill{
+    color: black;
+  }
+
+
+  @media only screen and (max-width: 400px) {
+    .list-group-item{
+      padding-left: 5px;
+      padding-right: 10px;
+    }
   }
 
   .filter-out{
@@ -47,12 +67,7 @@ body{
    }
 
   .starred{
-    background: #ffcc00 !important;
-    color: #000 !important;
-   }
-
-   .starred:hover{
-    background: #ffe066 !important;
+    background: #d3a2a9 !important;
     color: #000 !important;
    }
 
@@ -68,6 +83,8 @@ body{
     margin-top:10px;
     margin-left: 10px;
     float: right;
+    background: #B55361 !important;
+    border: black;
   }
 
   .badge{
@@ -82,29 +99,15 @@ body{
   .flex-fill{
     padding-left:25px;
   }
-
-  .highlight{
-    background: #0077b3 !important;
-    color:white !important;
-   }
-
-   .highlight-dark{
-    background: #003300 !important;
-   }
-
-   .highlight-edit{
-    background: #FFB900 !important;
-    color: #000000 !important;
-   }
-
+  
+  @media only screen and (max-width: 400px) {
+    .flex-fill{
+      padding-left:10px;
+    }
+  }
 
    .fas{
     float:right;
-   }
-
-   .fas:hover{
-    transform: scale(1.4);
-    transition: transform .3s; /* Animation */
    }
 
    .form-check{
@@ -117,7 +120,7 @@ body{
    }
 
   .searchbox{
-    background:white !important;
+    background: white !important;
   }
 
   .disabled{
