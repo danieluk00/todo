@@ -42,6 +42,10 @@ body{
     background: #B55361;
   }
 
+  .list-group-item:hover {
+    background: #c1707b;
+  }
+  
   .list-group-item i, .flex-fill{
     color: #F9F5F4;
   }
@@ -70,6 +74,10 @@ body{
     background: #d3a2a9 !important;
     color: #000 !important;
    }
+
+  .starred:hover{
+    background: #d6b1b6 !important;
+  }
 
    .delete{
     cursor: pointer;
