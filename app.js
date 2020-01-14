@@ -60,8 +60,8 @@ addForm.addEventListener('submit', e => {
 
 //Delete a task
 function deleteTask(item) {
-    item.classList.add('animated', 'slide-out-blurred-left'); //Animate out
-    setTimeout(function() {item.remove(); housekeeping()}, 1000); //Then pause and delete element
+    item.classList.add('animated', 'fadeOutLeft'); //Animate out
+    setTimeout(function() {item.remove(); housekeeping()}, 800); //Then pause and delete element
 }
 
 function starTask(item) {
