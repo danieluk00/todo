@@ -60,8 +60,8 @@ addForm.addEventListener('submit', e => {
 
 //Delete a task
 function deleteTask(item) {
-    item.classList.add('animated', 'bounceOutLeft'); //Animate out
-    setTimeout(function() {item.remove(); housekeeping()}, 600); //Then pause and delete element
+    item.classList.add('animated', 'slide-out-blurred-left'); //Animate out
+    setTimeout(function() {item.remove(); housekeeping()}, 1000); //Then pause and delete element
 }
 
 function starTask(item) {
@@ -155,7 +155,8 @@ function editTask(item) {
     prevTaskValue = item.querySelector('span').innerHTML.trim(); //Remember previous task text
     activeItem = item;
 
-    wrapper.classList.add('disabled'); //Disabled rest of page
+    wrapper.classList.add('text-blur-out'); //Disabled rest of page
+    wrapper.classList.remove('text-focus-in');
     animateEditCard("In"); //Show edit card
     editForm.edit.focus(); //Bring into focus
     editForm.edit.value=prevTaskValue; //Populate text field
@@ -163,7 +164,8 @@ function editTask(item) {
     editForm.addEventListener('submit', e  => { //Submit event
 
         e.preventDefault()
-        wrapper.classList.remove('disabled');
+        wrapper.classList.add('text-focus-in');
+        wrapper.classList.remove('text-blur-out');
    
         text=editForm.edit.value.trim() //Get text from form
 
@@ -182,9 +184,9 @@ function animateEditCard(direction) {
     if (direction=="In") {
 
         editCard.classList.remove('hidden');
-        editCard.classList.add('animated','rubberBand');
+        editCard.classList.add('animated','slide-in-blurred-top');
         setTimeout(function() {
-            editCard.classList.remove('animated','rubberBand');
+            editCard.classList.remove('animated','slide-in-blurred-top');
         }, 1000); //Snap, then removes
 
     } else if (direction=="Out") {
